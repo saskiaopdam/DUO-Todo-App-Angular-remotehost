@@ -16,35 +16,29 @@ export class TodoService {
 
   constructor(public http: HttpClient) { }
 
-  // Create
-  addTodo(todo: Todo): Observable<Todo> {
-    return this.http.post<Todo>(
-      'http://localhost:8080/todo', todo
-    );
+  add(todo: Todo): Observable<Todo> {
+    return this.http.post<Todo>('http://localhost:8080/todo', todo);
   }
 
   // Read - all
-  getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>('http://localhost:8080/todo');
+  load(): Observable<Todo[]> {
+    return this.http.get<Todo[]>('http://localhost:8080/todo')
   }
 
   // Read - by id
-  getTodo(id: number): Observable<Todo> {
-    return this.http.get<Todo>(
-      'http://localhost:8080/todo/' + id
-    );
-  }
+  // getTodo(id: number): Observable<Todo> {
+  //   return this.http.get<Todo>(
+  //     'http://localhost:8080/todo/' + id
+  //   );
+  // }
 
   // Update
-  updateTodo(todo: Todo): Observable<any> {
-    return this.http.put('http://localhost:8080/todo/' + todo.id, todo
-    );
-  }
+  // updateTodo(todo: Todo): Observable<any> {
+  //   return this.http.put('http://localhost:8080/todo/' + todo.id, todo
+  //   );
+  // }
 
-  // Delete
-  deleteTodo(id: number) {
-    return this.http.delete(
-      'http://localhost:8080/todo/' + id
-    );
+  delete(id: number) {
+    return this.http.delete('http://localhost:8080/todo/' + id)
   }
 }

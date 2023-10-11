@@ -21,27 +21,27 @@ export class TodoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getTodo();
+    // this.getTodo();
   }
 
-  getTodo(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    console.log(`id: ${id}`);
-    this.todoService.getTodo(id)
-      .subscribe(todo => {
-        this.todo = todo;
-        console.log(`task: ${this.todo.task}`);
-      });
-  }
+  // getTodo(): void {
+  //   const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+  //   console.log(`id: ${id}`);
+  //   this.todoService.getTodo(id)
+  //     .subscribe(todo => {
+  //       this.todo = todo;
+  //       console.log(`task: ${this.todo.task}`);
+  //     });
+  // }
 
   goBack(): void {
     this.location.back();
   }
 
-  save(): void {
-    if (this.todo) {
-      this.todoService.updateTodo(this.todo)
-        .subscribe(() => this.goBack());
-    }
-  }
+  // save(): void {
+  //   if (this.todo) {
+  //     this.todoService.updateTodo(this.todo)
+  //       .subscribe(() => this.goBack());
+  //   }
+  // }
 }

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TodoListComponent } from "../todo-list/todo-list.component";
-import { TodoService } from "../todo.service";
+import { Component, OnInit } from '@angular/core';
+
 import { Todo } from "../todo";
+import { Store } from "@ngrx/store";
+import { requestAddAction } from "../todo.actions";
 
 @Component({
   selector: 'app-todo-form',
@@ -10,17 +11,14 @@ import { Todo } from "../todo";
 })
 export class TodoFormComponent implements OnInit {
 
-  todo = new Todo();
+  todo: Todo = new Todo();
 
-  @Input()
-  todoList!: TodoListComponent;
+  constructor(private store: Store< { todos: Todo[] }>) {}
 
-  constructor(public todoService: TodoService) {}
   ngOnInit(): void {}
 
-  addTodo() {
-    this.todoService.addTodo(this.todo).subscribe(
-      () => this.todoList.getTodos())
+  add() {
+    this.store.dispatch(requestAddAction({ todo: this.todo }));
+    this.todo = new Todo();
   }
-
 }
