@@ -1,6 +1,7 @@
 <table>
   <tr *ngFor="let todo of todo$ | async">
     <td><a routerLink="/detail/{{ todo.id }}">{{ todo.task }}</a></td>
-    <td><button (click)="delete(todo.id)">del</button></td>
+<!--    <td><button (click)="save(todo)">Update</button></td>-->
+    <td><button (click)="delete(todo.id)">Delete</button></td>
   </tr>
 </table>

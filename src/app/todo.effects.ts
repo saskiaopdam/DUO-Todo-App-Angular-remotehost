@@ -1,11 +1,13 @@
 import { catchError, map, mergeMap } from "rxjs/operators";
 import {
-  addActionSuccess,
-  deleteActionSuccess,
-  loadActionSuccess,
-  requestAddAction,
-  requestDeleteAction,
-  requestLoadAction
+    addActionSuccess,
+    saveActionSuccess,
+    deleteActionSuccess,
+    loadActionSuccess,
+    requestAddAction,
+    requestSaveAction,
+    requestDeleteAction,
+    requestLoadAction
 } from "./todo.actions";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Injectable } from "@angular/core";
@@ -42,6 +44,17 @@ export class TodoEffects {
           .pipe(
             map((data: Todo) =>
               addActionSuccess({todo: data})
+            ), //catchError(err => addActionFailure({error: err}))
+          ))))
+
+  saveTodo$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(requestSaveAction),
+      mergeMap(action =>
+        this.todoService.save(action.todo)
+          .pipe(
+            map((data: Todo) =>
+              saveActionSuccess({todo: data})
             ), //catchError(err => addActionFailure({error: err}))
           ))))
 

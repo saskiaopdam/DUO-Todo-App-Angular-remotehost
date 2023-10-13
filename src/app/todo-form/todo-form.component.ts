@@ -13,11 +13,11 @@ export class TodoFormComponent implements OnInit {
 
   todo: Todo = new Todo();
 
-  constructor(private store: Store< { todos: Todo[] }>) {}
+  constructor(private store: Store<{ todos: Todo[] }>) {}
 
   ngOnInit(): void {}
 
-  add() {
+  add(): void {
     this.store.dispatch(requestAddAction({ todo: this.todo }));
     this.todo = new Todo();
   }

@@ -7,8 +7,8 @@
   </div>
   <div>
     <label for="todo-task">Todo task: </label>
-    <input id="todo-task" [(ngModel)]="todo.task" placeholder="task">
+    <input id="todo-task" [(ngModel)]="todo.task" name="task" placeholder="task">
   </div>
-  <button type="button" (click)="goBack()">go back</button>
-<!--  <button type="button" (click)="save()">save</button>-->
+  <button type="button" (click)="goBack()">Go back</button>
+  <button type="button" (click)="save()">Save</button>
 </div>
