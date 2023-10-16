@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Todo } from "../todo";
 import { Store } from "@ngrx/store";
+
+import { Todo } from "../todo.model";
 import { requestAddAction } from "../todo.actions";
 
 @Component({
@@ -11,7 +11,8 @@ import { requestAddAction } from "../todo.actions";
 })
 export class TodoFormComponent implements OnInit {
 
-  todo: Todo = new Todo();
+  // todo: Todo = new Todo();
+  todo: Todo = {id: 0, task: ''};
 
   constructor(private store: Store<{ todos: Todo[] }>) {}
 
@@ -19,6 +20,6 @@ export class TodoFormComponent implements OnInit {
 
   add(): void {
     this.store.dispatch(requestAddAction({ todo: this.todo }));
-    this.todo = new Todo();
+    this.todo = {id: 0, task: ''};
   }
 }

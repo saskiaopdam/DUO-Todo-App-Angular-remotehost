@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Todo } from "../todo";
-import { Observable } from "rxjs";
 import { select, Store } from "@ngrx/store";
+
+import { Todo } from "../todo.model";
+import { Observable } from "rxjs";
 import { requestDeleteAction, requestLoadAction } from "../todo.actions";
 
 @Component({

@@ -1,35 +1,22 @@
 import { createReducer, on } from "@ngrx/store";
-import { Todo } from "./todo";
+import { Todo } from "./todo.model";
 import {
   addActionSuccess,
-  saveActionSuccess,
+  updateActionSuccess,
   deleteActionSuccess,
   loadActionSuccess,
-  selectItem,
-  editItem
 } from "./todo.actions";
 
-// nieuw
-export interface TodoState {
-  selectedItemId: number | null;
-  todos: Todo[]
-}
-export const initialState: Todo[] = [], selectedItemId = null;
+
+export const initialState: Todo[] = [];
 
 export const todoReducer = createReducer(
   initialState,
 
-  // nieuw
-  on(selectItem, (state, { itemId }) => ({ ...state, selectedItemId: itemId })),
-  on(editItem, (state, { itemId, newItemData }) => {
-    // Handle item edit logic here and return the updated state
-    return state;
-  }),
-// eind nieuw
   on(addActionSuccess, (state, action) =>
     [...state, action.todo]
   ),
-  on(saveActionSuccess, (state, action) =>
+  on(updateActionSuccess, (state, action) =>
       state.map(todo => (todo.id === action.todo.id ? action.todo: todo))
   ),
   on(deleteActionSuccess, (state, action) =>

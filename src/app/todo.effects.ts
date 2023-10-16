@@ -1,22 +1,20 @@
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap } from "rxjs/operators";
+
 import {
     addActionSuccess,
-    saveActionSuccess,
+    updateActionSuccess,
     deleteActionSuccess,
     loadActionSuccess,
     requestAddAction,
-    requestSaveAction,
+    requestUpdateAction,
     requestDeleteAction,
-    requestLoadAction
+    requestLoadAction,
 } from "./todo.actions";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { Injectable } from "@angular/core";
-import { Todo } from "./todo";
-import { TodoService } from "./todo.service";
 
-function addActionFailure(param: { error: any }) {
-  return undefined;
-}
+import { Todo } from "./todo.model";
+import { TodoService } from "./todo.service";
 
 @Injectable()
 export class TodoEffects {
@@ -25,16 +23,6 @@ export class TodoEffects {
     private todoService: TodoService,
     private action$: Actions) {
   }
-
-  loadTodo$ = createEffect(() =>
-    this.action$.pipe(
-      ofType(requestLoadAction),
-      mergeMap(action =>
-        this.todoService.load()
-          .pipe(
-            map((data: Todo[]) =>
-              loadActionSuccess({todos: data})
-            )))))
 
   addTodo$ = createEffect(() =>
     this.action$.pipe(
@@ -47,14 +35,14 @@ export class TodoEffects {
             ), //catchError(err => addActionFailure({error: err}))
           ))))
 
-  saveTodo$ = createEffect(() =>
+  updateTodo$ = createEffect(() =>
     this.action$.pipe(
-      ofType(requestSaveAction),
+      ofType(requestUpdateAction),
       mergeMap(action =>
-        this.todoService.save(action.todo)
+        this.todoService.update(action.todo)
           .pipe(
             map((data: Todo) =>
-              saveActionSuccess({todo: data})
+              updateActionSuccess({todo: data})
             ), //catchError(err => addActionFailure({error: err}))
           ))))
 
@@ -66,6 +54,16 @@ export class TodoEffects {
           .pipe(
             map(() =>
               deleteActionSuccess({id: action.id})
+            )))))
+
+    loadTodo$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(requestLoadAction),
+      mergeMap(action =>
+        this.todoService.load()
+          .pipe(
+            map((data: Todo[]) =>
+              loadActionSuccess({todos: data})
             )))))
 
 }
