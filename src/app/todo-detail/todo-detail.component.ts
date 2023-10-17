@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { Location } from '@angular/common';
 import { Store } from "@ngrx/store";
 
@@ -18,6 +18,7 @@ export class TodoDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private todoService: TodoService,
     private location: Location,
     private store: Store<{ todos: Todo[] }>
@@ -45,6 +46,7 @@ export class TodoDetailComponent implements OnInit {
     if (this.todo) {
       this.store.dispatch(requestUpdateAction({ todo: this.todo }));
       this.goBack();
+      this.router.navigate(['/']);
     }
   }
 }
