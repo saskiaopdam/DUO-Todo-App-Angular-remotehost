@@ -38,14 +38,9 @@ export class TodoDetailComponent implements OnInit {
       });
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   update(): void {
     if (this.todo) {
       this.store.dispatch(requestUpdateAction({ todo: this.todo }));
-      this.goBack();
       this.router.navigate(['/']);
     }
   }
