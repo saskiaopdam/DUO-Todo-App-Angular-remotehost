@@ -14,7 +14,7 @@ import { requestUpdateAction } from "../todo.actions";
 })
 export class TodoDetailComponent implements OnInit {
 
-  todo: Todo = {id: 0, task: ''};
+  todo: Todo = {id: 0, task: '', isChecked: false};
 
   constructor(
     private route: ActivatedRoute,
