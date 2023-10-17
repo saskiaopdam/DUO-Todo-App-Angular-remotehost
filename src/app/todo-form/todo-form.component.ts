@@ -11,7 +11,6 @@ import { requestAddAction } from "../todo.actions";
 })
 export class TodoFormComponent implements OnInit {
 
-  // todo: Todo = new Todo();
   todo: Todo = {id: 0, task: ''};
 
   constructor(private store: Store<{ todos: Todo[] }>) {}

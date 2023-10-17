@@ -56,7 +56,7 @@ export class TodoEffects {
               deleteActionSuccess({id: action.id})
             )))))
 
-    loadTodo$ = createEffect(() =>
+    loadTodos$ = createEffect(() =>
     this.action$.pipe(
       ofType(requestLoadAction),
       mergeMap(action =>

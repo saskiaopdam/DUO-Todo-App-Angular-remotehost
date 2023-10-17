@@ -7,7 +7,6 @@ import {
   loadActionSuccess,
 } from "./todo.actions";
 
-
 export const initialState: Todo[] = [];
 
 export const todoReducer = createReducer(
