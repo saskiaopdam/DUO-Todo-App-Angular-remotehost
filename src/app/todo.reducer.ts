@@ -5,6 +5,7 @@ import {
   updateActionSuccess,
   deleteActionSuccess,
   loadActionSuccess,
+  toggleItemChecked
 } from "./todo.actions";
 
 export const initialState: Todo[] = [];
@@ -12,6 +13,9 @@ export const initialState: Todo[] = [];
 export const todoReducer = createReducer(
   initialState,
 
+  on(toggleItemChecked, (state, action) =>
+    state.map(todo => (todo.id === action.todo.id ? {...todo, checked: !todo.checked} : todo))
+  ),
   on(addActionSuccess, (state, action) =>
     [...state, action.todo]
   ),

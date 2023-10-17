@@ -3,7 +3,7 @@ import { select, Store } from "@ngrx/store";
 
 import { Todo } from "../todo.model";
 import { Observable } from "rxjs";
-import { requestDeleteAction, requestLoadAction } from "../todo.actions";
+import {requestDeleteAction, requestLoadAction, toggleItemChecked} from "../todo.actions";
 
 @Component({
   selector: 'app-todo-list',
@@ -20,6 +20,10 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(requestLoadAction());
+  }
+
+  onToggle(todo: Todo) {
+    this.store.dispatch(toggleItemChecked({ todo: todo }));
   }
 
   delete(id: number): void {

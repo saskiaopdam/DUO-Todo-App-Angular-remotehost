@@ -15,8 +15,18 @@ export class TodoService {
 
   constructor(public http: HttpClient) { }
 
+  // toggleChecked(id: number): Observable<Todo> {
+  //   return this.http.put<Todo>('http://localhost:8080/todo/' + id, todo
+  //   );
+  // }
+
   add(todo: Todo): Observable<Todo> {
     return this.http.post<Todo>('http://localhost:8080/todo', todo);
+  }
+
+  toggle(todo: Todo): Observable<Todo> {
+    return this.http.put<Todo>('http://localhost:8080/todo/' + todo.id, todo
+    );
   }
 
   update(todo: Todo): Observable<Todo> {

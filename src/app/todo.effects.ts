@@ -3,14 +3,14 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap } from "rxjs/operators";
 
 import {
-    addActionSuccess,
-    updateActionSuccess,
-    deleteActionSuccess,
-    loadActionSuccess,
-    requestAddAction,
-    requestUpdateAction,
-    requestDeleteAction,
-    requestLoadAction,
+  addActionSuccess,
+  updateActionSuccess,
+  deleteActionSuccess,
+  loadActionSuccess,
+  requestAddAction,
+  requestUpdateAction,
+  requestDeleteAction,
+  requestLoadAction, toggleItemChecked,
 } from "./todo.actions";
 
 import { Todo } from "./todo.model";
@@ -32,6 +32,17 @@ export class TodoEffects {
           .pipe(
             map((data: Todo) =>
               addActionSuccess({todo: data})
+            ), //catchError(err => addActionFailure({error: err}))
+          ))))
+
+  toggleTodoChecked$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(toggleItemChecked),
+      mergeMap(action =>
+        this.todoService.toggle(action.todo)
+          .pipe(
+            map((data: Todo) =>
+              toggleItemChecked({todo: data})
             ), //catchError(err => addActionFailure({error: err}))
           ))))
 

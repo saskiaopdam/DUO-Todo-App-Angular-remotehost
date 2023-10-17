@@ -1,6 +1,9 @@
 import { createAction, props } from "@ngrx/store";
 import { Todo } from "./todo.model";
 
+export const toggleItemChecked = createAction(
+  '[Todo List] Toggle Item Checked', props<{ todo: Todo }>()
+);
 export const requestAddAction = createAction(
   '[Todo Component] Add', props<{ todo: Todo }>()
 );

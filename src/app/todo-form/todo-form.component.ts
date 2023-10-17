@@ -11,7 +11,7 @@ import { requestAddAction } from "../todo.actions";
 })
 export class TodoFormComponent implements OnInit {
 
-  todo: Todo = {id: 0, task: '', isChecked: false};
+  todo: Todo = {id: 0, task: '', checked: false};
 
   constructor(private store: Store<{ todos: Todo[] }>) {}
 
@@ -19,6 +19,6 @@ export class TodoFormComponent implements OnInit {
 
   add(): void {
     this.store.dispatch(requestAddAction({ todo: this.todo }));
-    this.todo = {id: 0, task: '', isChecked: false};
+    this.todo = {id: 0, task: '', checked: false};
   }
 }

@@ -1,6 +1,8 @@
 <table>
   <tr *ngFor="let todo of todo$ | async">
+    <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>
     <td><a routerLink="/detail/{{ todo.id }}">{{ todo.task }}</a></td>
     <td><button (click)="delete(todo.id)">Delete</button></td>
+    <td>status: {{ todo.checked ? "done" : "to do" }}</td>
   </tr>
 </table>
