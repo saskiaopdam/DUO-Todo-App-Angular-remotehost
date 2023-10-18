@@ -10,11 +10,13 @@ import {
   requestAddAction,
   requestUpdateAction,
   requestDeleteAction,
-  requestLoadAction, toggleItemChecked,
+  requestLoadAction,
 } from "./todo.actions";
 
 import { Todo } from "./todo.model";
 import { TodoService } from "./todo.service";
+import {requestToggleAction} from "./todo.actions";
+import {toggleActionSuccess} from "./todo.actions";
 
 @Injectable()
 export class TodoEffects {
@@ -37,12 +39,12 @@ export class TodoEffects {
 
   toggleTodoChecked$ = createEffect(() =>
     this.action$.pipe(
-      ofType(toggleItemChecked),
+      ofType(requestToggleAction),
       mergeMap(action =>
         this.todoService.toggle(action.todo)
           .pipe(
             map((data: Todo) =>
-              toggleItemChecked({todo: data})
+              toggleActionSuccess({todo: data})
             ), //catchError(err => addActionFailure({error: err}))
           ))))
 
