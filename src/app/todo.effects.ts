@@ -7,16 +7,16 @@ import {
   updateActionSuccess,
   deleteActionSuccess,
   loadActionSuccess,
+  toggleActionSuccess,
   requestAddAction,
   requestUpdateAction,
   requestDeleteAction,
   requestLoadAction,
+  requestToggleAction
 } from "./todo.actions";
 
 import { Todo } from "./todo.model";
 import { TodoService } from "./todo.service";
-import {requestToggleAction} from "./todo.actions";
-import {toggleActionSuccess} from "./todo.actions";
 
 @Injectable()
 export class TodoEffects {

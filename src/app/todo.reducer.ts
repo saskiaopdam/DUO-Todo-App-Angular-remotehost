@@ -8,16 +8,20 @@ import {
   toggleActionSuccess,
 } from "./todo.actions";
 
+export interface AppState {
+  todos: Todo[];
+}
+
 export const initialState: Todo[] = [];
 
 export const todoReducer = createReducer(
   initialState,
 
-  on(toggleActionSuccess, (state, action) =>
-    state.map(todo => (todo.id === action.todo.id ? {...todo, checked: !todo.checked} : todo))
-  ),
   on(addActionSuccess, (state, action) =>
     [...state, action.todo]
+  ),
+  on(toggleActionSuccess, (state, action) =>
+    state.map(todo => (todo.id === action.todo.id ? {...todo, checked: !todo.checked} : todo))
   ),
   on(updateActionSuccess, (state, action) =>
       state.map(todo => (todo.id === action.todo.id ? action.todo: todo))

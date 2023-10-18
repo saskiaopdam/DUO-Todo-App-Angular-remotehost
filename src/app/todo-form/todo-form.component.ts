@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 
 import { Todo } from "../todo.model";
 import { requestAddAction } from "../todo.actions";
+import { AppState } from "../todo.reducer";
 
 @Component({
   selector: 'app-todo-form',
@@ -13,7 +14,7 @@ export class TodoFormComponent implements OnInit {
 
   todo: Todo = {id: 0, task: '', checked: false};
 
-  constructor(private store: Store<{ todos: Todo[] }>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 

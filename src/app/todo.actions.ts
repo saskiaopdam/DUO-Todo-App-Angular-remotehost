@@ -1,19 +1,19 @@
 import { createAction, props } from "@ngrx/store";
 import { Todo } from "./todo.model";
 
-export const requestToggleAction = createAction(
-  '[Todo Component] Toggle', props<{ todo: Todo }>()
-);
-export const toggleActionSuccess = createAction(
-  '[Todo Component] ToggleSuccess', props<{ todo: Todo }>()
-);
-
 export const requestAddAction = createAction(
   '[Todo Component] Add', props<{ todo: Todo }>()
 );
 
 export const addActionSuccess = createAction(
   '[Todo Component] AddSuccess', props<{ todo: Todo }>()
+);
+
+export const requestToggleAction = createAction(
+  '[Todo Component] Toggle', props<{ todo: Todo }>()
+);
+export const toggleActionSuccess = createAction(
+  '[Todo Component] ToggleSuccess', props<{ todo: Todo }>()
 );
 
 export const requestUpdateAction = createAction(
@@ -39,6 +39,3 @@ export const requestLoadAction = createAction(
 export const loadActionSuccess = createAction(
   '[Todo Component] LoadSuccess', props<{ todos: Todo[] }>()
 );
-
-
-

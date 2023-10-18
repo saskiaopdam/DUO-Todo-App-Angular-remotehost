@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 
 import { Todo } from "../todo.model";
 import { TodoService } from "../todo.service";
 import { requestUpdateAction } from "../todo.actions";
+import { AppState } from "../todo.reducer";
 
 @Component({
   selector: 'app-todo-detail',
@@ -20,8 +20,7 @@ export class TodoDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private todoService: TodoService,
-    private location: Location,
-    private store: Store<{ todos: Todo[] }>
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {

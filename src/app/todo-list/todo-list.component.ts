@@ -3,7 +3,12 @@ import { select, Store } from "@ngrx/store";
 
 import { Todo } from "../todo.model";
 import { Observable } from "rxjs";
-import {requestDeleteAction, requestLoadAction, requestToggleAction} from "../todo.actions";
+import {
+  requestDeleteAction,
+  requestLoadAction,
+  requestToggleAction
+} from "../todo.actions";
+import { AppState } from "../todo.reducer";
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +19,7 @@ export class TodoListComponent implements OnInit {
 
   todo$: Observable<Todo[]>;
 
-  constructor(private store: Store<{ todos: Todo[] }>) {
+  constructor(private store: Store<AppState>) {
     this.todo$ = store.pipe(select('todos'));
   }
 
@@ -23,7 +28,6 @@ export class TodoListComponent implements OnInit {
   }
 
   onToggle(todo: Todo) {
-
     let toggledTodo = {
       task: todo.task,
       id: todo.id,
