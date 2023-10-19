@@ -19,11 +19,6 @@ export class TodoService {
     return this.http.post<Todo>('http://localhost:8080/todo', todo);
   }
 
-  toggle(todo: Todo): Observable<Todo> {
-    return this.http.put<Todo>('http://localhost:8080/todo/' + todo.id, todo
-    );
-  }
-
   update(todo: Todo): Observable<Todo> {
     return this.http.put<Todo>('http://localhost:8080/todo/' + todo.id, todo
     );
@@ -37,9 +32,9 @@ export class TodoService {
     return this.http.get<Todo[]>('http://localhost:8080/todo')
   }
 
-  getTodo(id: number): Observable<Todo> {
-    return this.http.get<Todo>(
-        'http://localhost:8080/todo/' + id
+  toggle(todo: Todo): Observable<Todo> {
+    return this.http.put<Todo>('http://localhost:8080/todo/' + todo.id, todo
     );
   }
+
 }

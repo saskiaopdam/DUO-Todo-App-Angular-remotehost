@@ -20,9 +20,6 @@ export const todoReducer = createReducer(
   on(addActionSuccess, (state, action) =>
     [...state, action.todo]
   ),
-  on(toggleActionSuccess, (state, action) =>
-    state.map(todo => (todo.id === action.todo.id ? {...todo, checked: !todo.checked} : todo))
-  ),
   on(updateActionSuccess, (state, action) =>
       state.map(todo => (todo.id === action.todo.id ? action.todo: todo))
   ),
@@ -31,5 +28,8 @@ export const todoReducer = createReducer(
   ),
   on(loadActionSuccess, (state, action) =>
     action.todos
+  ),
+  on(toggleActionSuccess, (state, action) =>
+    state.map(todo => (todo.id === action.todo.id ? {...todo, checked: !todo.checked} : todo))
   ),
 );

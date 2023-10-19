@@ -4,6 +4,7 @@ import { select, Store } from "@ngrx/store";
 import { Todo } from "../todo.model";
 import { Observable } from "rxjs";
 import {
+  requestAddAction,
   requestDeleteAction,
   requestLoadAction,
   requestToggleAction, requestUpdateAction
@@ -20,6 +21,8 @@ export class TodoListComponent implements OnInit {
   todo$: Observable<Todo[]>;
   editing: boolean = false;
   editingTodo: any;
+  adding: boolean = false;
+  addingTodo: any;
 
   constructor(private store: Store<AppState>) {
     this.todo$ = store.pipe(select('todos'));
@@ -35,36 +38,33 @@ export class TodoListComponent implements OnInit {
       id: todo.id,
       checked: !todo.checked,
     };
-    console.log(toggledTodo.task + " " + toggledTodo.checked);
     this.store.dispatch(requestToggleAction({ todo: toggledTodo }));
   }
 
   startEditing(todo: any) {
-    console.log('start editing');
     this.editingTodo = { ...todo };
-    console.log('editingTodo: ' + this.editingTodo.task);
     this.editing = true;
-    console.log('editing: ' + this.editing);
   }
 
   onEditDone() {
-    console.log('edit done');
     this.store.dispatch(requestUpdateAction({ todo: this.editingTodo }));
-    console.log('editingTodo: ' + this.editingTodo.task);
     this.editing = false;
-    console.log('editing: ' + this.editing);
   };
-
-  onClick(todo: Todo) {
-    this.editing = !this.editing;
-  };
-
-  update(todo: Todo): void {
-    if (todo) {
-      this.store.dispatch(requestUpdateAction({ todo: todo }));
-      // this.router.navigate(['/']);
-    }
+  startAdding(todo: any) {
+    this.addingTodo = { ...todo };
+    let addingTodo = {
+      task: "",
+      id: 0,
+      checked: false,
+    };
+    this.adding = true;
   }
+
+  onAddingDone() {
+    this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
+    this.adding = false;
+  };
+
   delete(id: number): void {
     this.store.dispatch(requestDeleteAction({ id: id }));
   }

@@ -37,17 +37,6 @@ export class TodoEffects {
             ), //catchError(err => addActionFailure({error: err}))
           ))))
 
-  toggleTodoChecked$ = createEffect(() =>
-    this.action$.pipe(
-      ofType(requestToggleAction),
-      mergeMap(action =>
-        this.todoService.toggle(action.todo)
-          .pipe(
-            map((data: Todo) =>
-              toggleActionSuccess({todo: data})
-            ), //catchError(err => addActionFailure({error: err}))
-          ))))
-
   updateTodo$ = createEffect(() =>
     this.action$.pipe(
       ofType(requestUpdateAction),
@@ -78,5 +67,16 @@ export class TodoEffects {
             map((data: Todo[]) =>
               loadActionSuccess({todos: data})
             )))))
+
+  toggleTodoChecked$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(requestToggleAction),
+      mergeMap(action =>
+        this.todoService.toggle(action.todo)
+          .pipe(
+            map((data: Todo) =>
+              toggleActionSuccess({todo: data})
+            ), //catchError(err => addActionFailure({error: err}))
+          ))))
 
 }
