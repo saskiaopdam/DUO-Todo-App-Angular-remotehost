@@ -1,7 +1,24 @@
+<!--<table>-->
+<!--  <tr *ngFor="let todo of todo$ | async">-->
+<!--    <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>-->
+<!--    <td><a routerLink="/detail/{{ todo.id }}">{{ todo.task }}</a></td>-->
+<!--    <td><button (click)="delete(todo.id)">Delete</button></td>-->
+<!--    <td>status: {{ todo.checked ? "done" : "to do" }}</td>-->
+<!--  </tr>-->
+<!--</table>-->
+
 <table>
   <tr *ngFor="let todo of todo$ | async">
     <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>
-    <td><a routerLink="/detail/{{ todo.id }}">{{ todo.task }}</a></td>
+
+    <ng-container *ngIf="!editingTodo || editingTodo.id !== todo.id; else editField">
+      <td (click)="startEditing(todo)">{{ todo.task }}</td>
+    </ng-container>
+    <ng-template #editField>
+      <td><input type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone(editingTodo)" (blur)="onEditDone(editingTodo)"></td>
+    </ng-template>
+
+
     <td><button (click)="delete(todo.id)">Delete</button></td>
     <td>status: {{ todo.checked ? "done" : "to do" }}</td>
   </tr>

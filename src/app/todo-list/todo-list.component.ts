@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import {
   requestDeleteAction,
   requestLoadAction,
-  requestToggleAction
+  requestToggleAction, requestUpdateAction
 } from "../todo.actions";
 import { AppState } from "../todo.reducer";
 
@@ -18,6 +18,8 @@ import { AppState } from "../todo.reducer";
 export class TodoListComponent implements OnInit {
 
   todo$: Observable<Todo[]>;
+  editing: boolean = false;
+  editingTodo: any;
 
   constructor(private store: Store<AppState>) {
     this.todo$ = store.pipe(select('todos'));
@@ -37,6 +39,26 @@ export class TodoListComponent implements OnInit {
     this.store.dispatch(requestToggleAction({ todo: toggledTodo }));
   }
 
+  startEditing(todo: any) {
+    this.editingTodo = { ...todo };
+    this.editing = true;
+  }
+
+  onEditDone(todo: Todo) {
+    this.editing = false;
+    this.store.dispatch(requestUpdateAction({ todo: todo }));
+  };
+
+  onClick(todo: Todo) {
+    this.editing = !this.editing;
+  };
+
+  update(todo: Todo): void {
+    if (todo) {
+      this.store.dispatch(requestUpdateAction({ todo: todo }));
+      // this.router.navigate(['/']);
+    }
+  }
   delete(id: number): void {
     this.store.dispatch(requestDeleteAction({ id: id }));
   }
