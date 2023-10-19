@@ -7,21 +7,27 @@
       </ng-container>
       <ng-template #editField>
         <input type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone()" (blur)="onEditDone()">
+        <button (click)="onEditDone()">Save</button>
       </ng-template>
     </td>
     <td><button (click)="delete(todo.id)">Delete</button></td>
+    <td>status: {{ todo.checked ? "done" : "to do" }}</td>
   </tr>
-  <tr>
 
-    <ng-container *ngIf="!adding; else addingField"></ng-container>
-    <ng-template #addingField>
-      <input type="checkbox">
-<!--      <input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)">-->
-      <input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()" (blur)="onAddingDone()">
-    </ng-template>
+<!--  conditional render of ADDING field-->
+  <tr>
+    <td>
+      <ng-container *ngIf="!adding; else addingField"></ng-container>
+      <ng-template #addingField>
+        <input type="checkbox" [checked]="addingTodo.checked" (change)="onToggle(addingTodo)">
+        <input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()" (blur)="onAddingDone()">
+        <button (click)="onAddingDone()">Save</button>
+      </ng-template>
+    </td>
   </tr>
+<!--end of conditional render-->
 </table>
 
-<button (click)="startAdding(todo$)">+</button>
+<button (click)="startAdding()" class="accent">+</button><span class="accent"> Reminder</span>
 
 

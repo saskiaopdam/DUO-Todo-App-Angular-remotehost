@@ -50,18 +50,14 @@ export class TodoListComponent implements OnInit {
     this.store.dispatch(requestUpdateAction({ todo: this.editingTodo }));
     this.editing = false;
   };
-  startAdding(todo: any) {
-    this.addingTodo = { ...todo };
-    let addingTodo = {
-      task: "",
-      id: 0,
-      checked: false,
-    };
+  startAdding() {
+    console.log('start adding');
     this.adding = true;
   }
 
   onAddingDone() {
     this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
+    this.addingTodo = {id: 0, task: '', checked: false}
     this.adding = false;
   };
 
