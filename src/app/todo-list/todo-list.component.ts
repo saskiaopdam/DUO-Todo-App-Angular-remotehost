@@ -42,23 +42,34 @@ export class TodoListComponent implements OnInit {
   }
 
   startEditing(todo: any) {
+    // console.log('start editing');
     this.editingTodo = { ...todo };
+    // console.log('editing todo: ' + this.editingTodo.task);
     this.editing = true;
+    // console.log('editing: ' + this.editing);
   }
 
   onEditDone() {
+    // console.log('edit done');
     this.store.dispatch(requestUpdateAction({ todo: this.editingTodo }));
+    // console.log('editing todo: ' + this.editingTodo.task);
     this.editing = false;
+    // console.log('editing: ' + this.editing);
   };
   startAdding() {
-    console.log('start adding');
+    // console.log('start adding');
+    this.addingTodo = { id: 0, task: "", checked: false };
+    // console.log('adding todo: ' + this.addingTodo.task);
     this.adding = true;
+    // console.log('adding: ' + this.adding);
   }
 
   onAddingDone() {
+    console.log('adding done');
     this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
-    this.addingTodo = {id: 0, task: '', checked: false}
+    console.log('adding todo: ' + this.addingTodo.task);
     this.adding = false;
+    console.log('adding: ' + this.adding);
   };
 
   delete(id: number): void {

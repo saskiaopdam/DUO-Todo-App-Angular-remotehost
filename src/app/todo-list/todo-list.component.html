@@ -1,4 +1,5 @@
 <table>
+<!--conditional render of UPDATE field-->
   <tr *ngFor="let todo of todo$ | async">
     <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>
     <td (click)="startEditing(todo)">
@@ -6,26 +7,25 @@
         {{ todo.task }}
       </ng-container>
       <ng-template #editField>
-        <input type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone()" (blur)="onEditDone()">
-        <button (click)="onEditDone()">Save</button>
+        <input type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone()">
       </ng-template>
     </td>
-    <td><button (click)="delete(todo.id)">Delete</button></td>
-    <td>status: {{ todo.checked ? "done" : "to do" }}</td>
+    <td><button (click)="delete(todo.id)">-</button></td>
   </tr>
+<!--end of conditional render-->
 
-<!--  conditional render of ADDING field-->
+<!--conditional render of ADDING field-->
   <tr>
     <td>
       <ng-container *ngIf="!adding; else addingField"></ng-container>
       <ng-template #addingField>
-        <input type="checkbox" [checked]="addingTodo.checked" (change)="onToggle(addingTodo)">
-        <input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()" (blur)="onAddingDone()">
-        <button (click)="onAddingDone()">Save</button>
+        <input type="checkbox">
+        <input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()">
       </ng-template>
     </td>
   </tr>
 <!--end of conditional render-->
+
 </table>
 
 <button (click)="startAdding()" class="accent">+</button><span class="accent"> Reminder</span>
