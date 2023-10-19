@@ -40,13 +40,19 @@ export class TodoListComponent implements OnInit {
   }
 
   startEditing(todo: any) {
+    console.log('start editing');
     this.editingTodo = { ...todo };
+    console.log('editingTodo: ' + this.editingTodo.task);
     this.editing = true;
+    console.log('editing: ' + this.editing);
   }
 
-  onEditDone(todo: Todo) {
+  onEditDone() {
+    console.log('edit done');
+    this.store.dispatch(requestUpdateAction({ todo: this.editingTodo }));
+    console.log('editingTodo: ' + this.editingTodo.task);
     this.editing = false;
-    this.store.dispatch(requestUpdateAction({ todo: todo }));
+    console.log('editing: ' + this.editing);
   };
 
   onClick(todo: Todo) {
