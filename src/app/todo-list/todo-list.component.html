@@ -7,7 +7,7 @@
         {{ todo.task }}
       </ng-container>
       <ng-template #editField>
-        <input type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone()">
+        <input type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone()" (blur)="onEditDone()">
       </ng-template>
     </td>
     <td><button (click)="delete(todo.id)">-</button></td>
@@ -20,7 +20,7 @@
       </ng-container>
       <ng-template #addingField>
         <td><input type="checkbox"></td>
-        <td><input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()"></td>
+        <td><input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()" (blur)="onEditDone()"></td>
       </ng-template>
   </tr>
 <!--end of conditional render-->
