@@ -16,13 +16,12 @@
 
 <!--conditional render of ADDING field-->
   <tr>
-    <td>
-      <ng-container *ngIf="!adding; else addingField"></ng-container>
+      <ng-container *ngIf="!adding; else addingField">
+      </ng-container>
       <ng-template #addingField>
-        <input type="checkbox">
-        <input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()">
+        <td><input type="checkbox"></td>
+        <td><input type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()"></td>
       </ng-template>
-    </td>
   </tr>
 <!--end of conditional render-->
 
