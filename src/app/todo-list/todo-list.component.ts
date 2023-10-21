@@ -13,6 +13,7 @@ import {
   requestToggleAction,
 } from "../todo.actions";
 import { AppState } from "../todo.reducer";
+// import * as events from "events";
 
 @Component({
   selector: 'app-todo-list',
@@ -24,12 +25,15 @@ export class TodoListComponent implements OnInit {
   @ViewChild('addingInput') addingInput!: ElementRef;
 
   todo$: Observable<Todo[]>;
-  sortedTodos$: Observable<Todo[]>;
+  sortedTodos$: Observable<Todo[]>; // by 'checked'
+  filteredTodos$: Observable<Todo[]>; // by 'checked' = true
   editing: boolean = false;
   editingTodo: any;
   adding: boolean = false;
   addingTodo: any;
   deleting: boolean = false;
+
+  title = "To Do's";
 
   constructor(private store: Store<AppState>) {
     this.todo$ = store.pipe(select('todos'));
@@ -70,6 +74,10 @@ export class TodoListComponent implements OnInit {
     //   tap(sortedTodos => console.log('Sorted Todos:', sortedTodos))
     // );
 
+    this.filteredTodos$ = this.todo$.pipe(
+      map(todos => todos.filter(todo => todo.checked))
+    );
+
   }
 
   ngOnInit(): void {
@@ -98,12 +106,13 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  onEditDone() {
-    // console.log('edit done');
+  onEditDone(event: Event) {
+    console.log('edit done');
+    console.log('event: ' + event);
     this.store.dispatch(requestUpdateAction({ todo: this.editingTodo }));
-    // console.log('editing todo: ' + this.editingTodo.task);
+    console.log('editing todo: ' + this.editingTodo.task);
     this.editing = false;
-    // console.log('editing: ' + this.editing);
+    console.log('editing: ' + this.editing);
   };
   startAdding() {
     // console.log('start adding');
@@ -118,8 +127,9 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  onAddingDone() {
+  onAddingDone(event: Event) {
     console.log('adding done');
+    console.log('event: ' + event);
     this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
     console.log('adding todo: ' + this.addingTodo.task);
     this.adding = false;
@@ -130,11 +140,16 @@ export class TodoListComponent implements OnInit {
     this.deleting = true;
   };
 
+
   delete(id: number): void {
+    // alert('Are you sure?');
     this.store.dispatch(requestDeleteAction({ id: id }));
   }
 
-  onDeleteDone(): void {
+  onDeleteDone(event: Event): void {
+    console.log('deleting done');
+    console.log('event: ' + event);
     this.deleting = false;
   }
+
 }

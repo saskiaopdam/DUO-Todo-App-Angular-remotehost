@@ -1,4 +1,14 @@
-header {
-    display: flex;
-    justify-content: space-between;
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.color {
+  color: blue;
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: grey;
 }
