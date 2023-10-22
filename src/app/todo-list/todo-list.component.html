@@ -13,7 +13,7 @@
 
 <!--  <h2>{{ (todo$ | async)?.length }}</h2>-->
   <p>{{ (filteredTodos$ | async)?.length }} completed -
-    <span class="color" (click)="startDeleting()" [ngClass]="{ 'disabled': deleting}">delete</span>
+    <span class="color" (click)="startDeleting()" [ngClass]="{ 'disabled': deleting || (filteredTodos$ | async)?.length === 0 }">delete</span>
   </p>
 
 </header>

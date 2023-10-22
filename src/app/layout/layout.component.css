@@ -1,0 +1,23 @@
+/*set height of the app-layout component*/
+:host {
+  min-height: 100vh;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+}
+
+/*set properties for each child mat-tooltip-component*/
+app-header {
+  /*flex-grow: 0;*/
+  flex: 0 0 auto; /* Header won't grow or shrink, initial size based on content */
+}
+
+app-main {
+  /*flex-grow: 1;*/
+  flex: 1 1 auto; /* Main will grow and shrink, initial size based on content */
+}
+
+app-footer {
+  /*flex-grow: 0;*/
+  flex: 0 0 auto; /* Footer won't grow or shrink, initial size based on content */
+}
