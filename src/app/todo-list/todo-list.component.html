@@ -18,8 +18,8 @@
 
 </header>
 
-<table>
-<!--  <tr *ngFor="let todo of todo$ | async">-->
+<main><table>
+  <!--  <tr *ngFor="let todo of todo$ | async">-->
   <tr *ngFor="let todo of sortedTodos$ | async">
     <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>
     <td (click)="startEditing(todo)">
@@ -41,26 +41,27 @@
     <!--end of conditional render-->
   </tr>
 
-<!--conditional render of ADDING field-->
-<ng-container *ngIf="!adding; else addingField">
-</ng-container>
-<ng-template #addingField>
-  <tr>
-    <td><input type="checkbox"></td>
-    <td>
-      <input #addingInput type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone($event)">
-    </td>
-  </tr>
-</ng-template>
-<!--end of conditional render-->
+  <!--conditional render of ADDING field-->
+  <ng-container *ngIf="!adding; else addingField">
+  </ng-container>
+  <ng-template #addingField>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td>
+        <input #addingInput type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone($event)">
+      </td>
+    </tr>
+  </ng-template>
+  <!--end of conditional render-->
 
-</table>
+</table></main>
 
+<footer>
 <ng-container *ngIf="!adding; else nothing">
   <button (click)="startAdding()">+</button><span> Add</span>
 </ng-container>
 <ng-template #nothing></ng-template>
-
+</footer>
 
 
 
