@@ -16,6 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { MatButtonModule } from "@angular/material/button";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { FooterComponent } from './footer/footer.component';
         BrowserModule,
         FormsModule,
         HttpClientModule,
+        MatButtonModule,
         StoreModule.forRoot({
           todos: todoReducer
         }, {}),

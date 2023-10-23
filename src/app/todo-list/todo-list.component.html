@@ -6,7 +6,7 @@
       </ng-container>
       <ng-template #doneButton>
 <!--        <button (click)="adding? onAddingDone($event): onEditDone($event)">Done</button>-->
-        <button (click)="adding? onAddingDone($event): editing? onEditDone($event): onDeleteDone($event)">Done</button>
+        <button mat-button color="primary" (click)="adding? onAddingDone($event): editing? onEditDone($event): onDeleteDone($event)">Done</button>
       </ng-template>
     </div>
   </nav>
@@ -58,7 +58,7 @@
 
 <footer>
 <ng-container *ngIf="!adding; else nothing">
-  <button (click)="startAdding()">+</button><span> Add</span>
+  <button mat-button color="primary" (click)="startAdding()">+ Task</button>
 </ng-container>
 <ng-template #nothing></ng-template>
 </footer>
