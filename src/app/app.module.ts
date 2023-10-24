@@ -16,6 +16,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatButtonModule,
         MatToolbarModule,
         MatIconModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatTableModule,
         StoreModule.forRoot({
           todos: todoReducer
         }, {}),

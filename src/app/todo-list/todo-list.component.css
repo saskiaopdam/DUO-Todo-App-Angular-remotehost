@@ -1,25 +1,49 @@
 /*set height of the component*/
-:host {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+/*:host {*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
+
+/*header {*/
+/*  flex: 0 0 auto; !* Header won't grow or shrink, initial size based on content *!*/
+/*}*/
+
+/*main {*/
+/*  flex: 1 1 auto; !* Main will grow and shrink, initial size based on content *!*/
+/*}*/
+
+/*footer {*/
+/*  flex: 0 0 auto; !* Footer won't grow or shrink, initial size based on content *!*/
+/*}*/
 
 header {
-  flex: 0 0 auto; /* Header won't grow or shrink, initial size based on content */
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  background-color: white;
 }
 
 main {
-  flex: 1 1 auto; /* Main will grow and shrink, initial size based on content */
+  margin-top: 56px;
+  padding-top: 14px;
+  margin-bottom: 48px;
 }
 
 footer {
-  flex: 0 0 auto; /* Footer won't grow or shrink, initial size based on content */
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: white;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
+th {
+  /*padding: 10px;*/
 }
 
 .color {
@@ -38,4 +62,9 @@ nav {
 
 .spacer {
   margin: 0 5px; /* Adjust the margin value as per your preference */
+}
+
+.button-container {
+  display: flex;
+  align-items: center
 }
