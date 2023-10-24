@@ -11,10 +11,6 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 
 import { todoReducer } from "./todo.reducer";
 import { TodoEffects } from "./todo.effects";
-import { LayoutComponent } from './layout/layout.component';
-import { HeaderComponent } from './header/header.component';
-import { MainComponent } from './main/main.component';
-import { FooterComponent } from './footer/footer.component';
 
 import { MatButtonModule } from "@angular/material/button";
 
@@ -22,10 +18,6 @@ import { MatButtonModule } from "@angular/material/button";
   declarations: [
     AppComponent,
     TodoListComponent,
-    LayoutComponent,
-    HeaderComponent,
-    MainComponent,
-    FooterComponent,
   ],
     imports: [
         BrowserModule,

@@ -8,7 +8,7 @@ import {
   toggleActionSuccess,
 } from "./todo.actions";
 
-export interface AppState {
+export interface TodoState {
   todos: Todo[];
 }
 

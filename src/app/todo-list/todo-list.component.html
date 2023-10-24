@@ -5,62 +5,57 @@
       <ng-container *ngIf="!adding && !editing && !deleting; else doneButton">
       </ng-container>
       <ng-template #doneButton>
-<!--        <button (click)="adding? onAddingDone($event): onEditDone($event)">Done</button>-->
-        <button mat-button color="primary" (click)="adding? onAddingDone($event): editing? onEditDone($event): onDeleteDone($event)">Done</button>
+        <button mat-button color="primary" (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()">Done</button>
       </ng-template>
     </div>
   </nav>
-
-<!--  <h2>{{ (todo$ | async)?.length }}</h2>-->
   <p>{{ (filteredTodos$ | async)?.length }} completed -
     <span class="color" (click)="startDeleting()" [ngClass]="{ 'disabled': deleting || (filteredTodos$ | async)?.length === 0 }">delete</span>
   </p>
-
 </header>
 
-<main><table>
-  <!--  <tr *ngFor="let todo of todo$ | async">-->
-  <tr *ngFor="let todo of sortedTodos$ | async">
-    <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>
-    <td (click)="startEditing(todo)">
-      <!-- conditional render of UPDATE field -->
-      <ng-container *ngIf="!editing || editingTodo.id !== todo.id; else editField">
-        {{ todo.task }}
-      </ng-container>
-      <ng-template #editField>
-        <input #editInput type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone($event)" (blur)="onEditDone($event)">
+<main>
+  <table>
+    <tr *ngFor="let todo of sortedTodos$ | async">
+      <td><input type="checkbox" [checked]="todo.checked" (change)="onToggle(todo)"></td>
+      <td (click)="startEditing(todo)">
+        <!-- conditional render of EDIT field -->
+        <ng-container *ngIf="!editing || editingTodo.id !== todo.id; else editingField">
+          {{ todo.task }}
+        </ng-container>
+        <ng-template #editingField>
+          <input #editingInput type="text" [(ngModel)]="editingTodo.task" (keyup.enter)="onEditDone()" (blur)="onEditDone()">
+        </ng-template>
+      </td>
+      <!-- conditional render of DELETE button -->
+      <ng-container *ngIf="!deleting; else deleteButton"></ng-container>
+      <ng-template #deleteButton>
+        <td>
+          <button *ngIf="todo.checked" (click)="delete(todo.id)">-</button>
+        </td>
       </ng-template>
-    </td>
-    <!-- conditional render of DELETE button -->
-    <ng-container *ngIf="!deleting; else deleteButton"></ng-container>
-    <ng-template #deleteButton>
-      <td>
-        <button *ngIf="todo.checked" (click)="delete(todo.id)">-</button>
-      </td>
-    </ng-template>
-    <!--end of conditional render-->
-  </tr>
-
-  <!--conditional render of ADDING field-->
-  <ng-container *ngIf="!adding; else addingField">
-  </ng-container>
-  <ng-template #addingField>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td>
-        <input #addingInput type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone($event)">
-      </td>
+      <!-- end of conditional render -->
     </tr>
-  </ng-template>
-  <!--end of conditional render-->
-
-</table></main>
+    <!-- conditional render of ADDING field -->
+    <ng-container *ngIf="!adding; else addingField">
+    </ng-container>
+    <ng-template #addingField>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>
+          <input #addingInput type="text" [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()">
+        </td>
+      </tr>
+    </ng-template>
+    <!-- end of conditional render -->
+  </table>
+</main>
 
 <footer>
-<ng-container *ngIf="!adding; else nothing">
-  <button mat-button color="primary" (click)="startAdding()">+ Task</button>
-</ng-container>
-<ng-template #nothing></ng-template>
+  <ng-container *ngIf="!adding; else nothing">
+    <button mat-button color="primary" (click)="startAdding()">+ Task</button>
+  </ng-container>
+  <ng-template #nothing></ng-template>
 </footer>
 
 

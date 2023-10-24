@@ -12,8 +12,7 @@ import {
   requestLoadAction,
   requestToggleAction,
 } from "../todo.actions";
-import { AppState } from "../todo.reducer";
-// import * as events from "events";
+import { TodoState } from "../todo.reducer";
 
 @Component({
   selector: 'app-todo-list',
@@ -21,26 +20,25 @@ import { AppState } from "../todo.reducer";
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  @ViewChild('editInput') editInput!: ElementRef;
+  @ViewChild('editingInput') editingInput!: ElementRef;
   @ViewChild('addingInput') addingInput!: ElementRef;
 
   todo$: Observable<Todo[]>;
   sortedTodos$: Observable<Todo[]>; // by 'checked'
   filteredTodos$: Observable<Todo[]>; // by 'checked' = true
   editing: boolean = false;
-  editingTodo: any;
   adding: boolean = false;
-  addingTodo: any;
   deleting: boolean = false;
-
+  editingTodo: any;
+  addingTodo: any;
   title = "To Do's";
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<TodoState>) {
     this.todo$ = store.pipe(select('todos'));
 
     // sort by 'checked' property (unchecked first)
     this.sortedTodos$ = this.todo$.pipe(
-      tap(todos => console.log('Original Todos:', todos)),
+      // tap(todos => console.log('Original Todos:', todos)),
       map(todos => {
         return todos.slice().sort((a, b) => {
           if (!a.checked && b.checked) {
@@ -52,27 +50,8 @@ export class TodoListComponent implements OnInit {
           }
         });
       }),
-      tap(sortedTodos => console.log('Sorted Todos:', sortedTodos))
+      // tap(sortedTodos => console.log('Sorted Todos:', sortedTodos))
     );
-
-    // first sort by 'checked', then sort by 'task'
-    // this.sortedTodos$ = this.todo$.pipe(
-    //   tap(todos => console.log('Original Todos:', todos)),
-    //   map(todos => {
-    //     return todos.slice().sort((a, b) => {
-    //       // Sort by checked property first (unchecked items first)
-    //       if (!a.checked && b.checked) {
-    //         return -1; // 'a' comes before 'b'
-    //       } else if (a.checked && !b.checked) {
-    //         return 1; // 'b' comes before 'a'
-    //       } else {
-    //         // If checked status is the same, sort alphabetically by 'task'
-    //         return a.task.localeCompare(b.task);
-    //       }
-    //     });
-    //   }),
-    //   tap(sortedTodos => console.log('Sorted Todos:', sortedTodos))
-    // );
 
     this.filteredTodos$ = this.todo$.pipe(
       map(todos => todos.filter(todo => todo.checked))
@@ -94,32 +73,22 @@ export class TodoListComponent implements OnInit {
   }
 
   startEditing(todo: any) {
-    // console.log('start editing');
     this.editingTodo = { ...todo };
-    // console.log('editing todo: ' + this.editingTodo.task);
     this.editing = true;
-    // console.log('editing: ' + this.editing);
 
     // After setting editingTodo and other logic, focus the input field
     setTimeout(() => {
-      this.editInput.nativeElement.focus();
+      this.editingInput.nativeElement.focus();
     });
   }
 
-  onEditDone(event: Event) {
-    console.log('edit done');
-    console.log('event: ' + event);
+  onEditDone() {
     this.store.dispatch(requestUpdateAction({ todo: this.editingTodo }));
-    console.log('editing todo: ' + this.editingTodo.task);
     this.editing = false;
-    console.log('editing: ' + this.editing);
   };
   startAdding() {
-    // console.log('start adding');
     this.addingTodo = { id: 0, task: "", checked: false };
-    // console.log('adding todo: ' + this.addingTodo.task);
     this.adding = true;
-    // console.log('adding: ' + this.adding);
 
     // After setting addingTodo and other logic, focus the input field
     setTimeout(() => {
@@ -127,13 +96,9 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  onAddingDone(event: Event) {
-    console.log('adding done');
-    console.log('event: ' + event);
+  onAddingDone() {
     this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
-    console.log('adding todo: ' + this.addingTodo.task);
     this.adding = false;
-    console.log('adding: ' + this.adding);
   };
 
   startDeleting() {
@@ -142,13 +107,10 @@ export class TodoListComponent implements OnInit {
 
 
   delete(id: number): void {
-    // alert('Are you sure?');
     this.store.dispatch(requestDeleteAction({ id: id }));
   }
 
-  onDeleteDone(event: Event): void {
-    console.log('deleting done');
-    console.log('event: ' + event);
+  onDeleteDone(): void {
     this.deleting = false;
   }
 
