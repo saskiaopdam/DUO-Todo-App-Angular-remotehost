@@ -1,17 +1,19 @@
 <header>
-  <nav>
-    <h1>{{ title }}</h1>
-    <div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>To Do's</span>
+      <span class="example-spacer"></span>
       <ng-container *ngIf="!adding && !editing && !deleting; else doneButton">
       </ng-container>
       <ng-template #doneButton>
-        <button mat-button color="primary" (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()">Done</button>
+        <button mat-button (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()">Done</button>
       </ng-template>
-    </div>
-  </nav>
-  <p>{{ (filteredTodos$ | async)?.length }} completed -
-    <span class="color" (click)="startDeleting()" [ngClass]="{ 'disabled': deleting || (filteredTodos$ | async)?.length === 0 }">delete</span>
-  </p>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-toolbar-row>
+    <span>{{ (filteredTodos$ | async)?.length }} completed<span class="spacer"></span>-</span>
+    <button mat-button color="primary" (click)="startDeleting()" [ngClass]="{ 'disabled': deleting || (filteredTodos$ | async)?.length === 0 }" [disabled]="deleting || (filteredTodos$ | async)?.length === 0"> Delete</button>
+  </mat-toolbar-row>
 </header>
 
 <main>

@@ -31,3 +31,11 @@ nav {
   cursor: not-allowed;
   color: grey;
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.spacer {
+  margin: 0 5px; /* Adjust the margin value as per your preference */
+}

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import {first, Observable} from "rxjs";
 import { tap, map } from "rxjs/operators";
 
 import { Todo } from "../todo.model";
@@ -31,7 +31,6 @@ export class TodoListComponent implements OnInit {
   deleting: boolean = false;
   editingTodo: any;
   addingTodo: any;
-  title = "To Do's";
 
   constructor(private store: Store<TodoState>) {
     this.todo$ = store.pipe(select('todos'));
@@ -102,8 +101,21 @@ export class TodoListComponent implements OnInit {
   };
 
   startDeleting() {
-    this.deleting = true;
-  };
+    this.filteredTodos$.pipe(first()).subscribe(todos => {
+      if (todos.length === 0) {
+        console.log("Delete button is disabled because there are 0 completed items.");
+        // Optionally, you can display a message to the user
+        // this.snackbar.open('Cannot delete. There are no completed items.', 'OK');
+      } else {
+        this.deleting = true;
+        // Your deletion logic here
+      }
+    });
+  }
+
+  // startDeleting() {
+  //   this.deleting = true;
+  // };
 
 
   delete(id: number): void {
