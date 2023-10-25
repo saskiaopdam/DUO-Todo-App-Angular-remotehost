@@ -2,18 +2,18 @@
 
 DUO Java Masterclass project
 
-- Link naar [presentatie]().
 - Link naar [deploy]().
 
-## Inspiration source
+## Inspiration
 
-Apple Reminders App
+- Apple Reminders App
 
-## Technologies used
+## Technologies
 
 - Angular
 - Typescript
 - Ngrx (store)
+- Angular Material
 - Spring Boot
 - Java
 - MariaDB
@@ -23,16 +23,12 @@ Apple Reminders App
 - CRUD (create, read, update, delete)
 - STATE (ngrx state management)
 - UX (clear and intuitive app)
-
-### Planned focus
-
-- DESIGN (Angular Material)
+- UI (nice to look at)
 
 ## Features
 
-- inline editing of todo's
-- adding field displayed at list end
-
-### Planned features
-- completed todo's displayed at list end
-- menu option to show / hide completed todo's
+- inline editing
+- conditional rendering
+- adding field at list end
+- delete protection
+- checked items at end
