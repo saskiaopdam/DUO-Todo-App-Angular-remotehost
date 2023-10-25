@@ -1,22 +1,3 @@
-/*set height of the component*/
-/*:host {*/
-/*  min-height: 100vh;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*}*/
-
-/*header {*/
-/*  flex: 0 0 auto; !* Header won't grow or shrink, initial size based on content *!*/
-/*}*/
-
-/*main {*/
-/*  flex: 1 1 auto; !* Main will grow and shrink, initial size based on content *!*/
-/*}*/
-
-/*footer {*/
-/*  flex: 0 0 auto; !* Footer won't grow or shrink, initial size based on content *!*/
-/*}*/
-
 header {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
   position: fixed;
@@ -42,29 +23,11 @@ footer {
   background-color: white;
 }
 
-th {
-  /*padding: 10px;*/
-}
-
-.color {
-  color: blue;
-  cursor: pointer;
-}
-
 .disabled {
   cursor: not-allowed;
   color: grey;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
-}
-
 .spacer {
-  margin: 0 5px; /* Adjust the margin value as per your preference */
-}
-
-.button-container {
-  display: flex;
-  align-items: center
+  flex: 1 1 auto;
 }
