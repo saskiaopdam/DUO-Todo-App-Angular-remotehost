@@ -25,6 +25,11 @@ DUO Java Masterclass project
 - UX (clear and intuitive app)
 - UI (nice to look at)
 
+## Issues
+
+- Ngrx (Observable <=> initialState = {})
+- TypeErrors / filter not a function
+
 ## Features
 
 - inline editing
