@@ -24,11 +24,13 @@ DUO Java Masterclass project
 - STATE (ngrx state management)
 - UX (clear and intuitive app)
 - UI (nice to look at)
+- Validation (prevent adding "")
 
 ## Issues
 
 - Ngrx (Observable <=> initialState = {})
 - TypeErrors / filter not a function
+- Resolved, but todos not visible
 
 ## Features
 
@@ -37,3 +39,4 @@ DUO Java Masterclass project
 - adding field at list end
 - delete protection
 - checked items at end
+- empty add protection

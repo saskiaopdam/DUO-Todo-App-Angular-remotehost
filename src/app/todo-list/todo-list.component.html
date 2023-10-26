@@ -7,7 +7,7 @@
       <ng-container *ngIf="!adding && !editing && !deleting; else doneButton">
       </ng-container>
       <ng-template #doneButton>
-        <button mat-button (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()">Done</button>
+        <button mat-button (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()" [ngClass]="{ 'disabled': (addingTodo.task) === '' }" [disabled]="(addingTodo.task) === ''">Done</button>
       </ng-template>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -45,24 +45,24 @@
     <ng-template #addingField>
       <tr>
         <td><mat-checkbox></mat-checkbox></td>
-        <td>
-          <input matInput #addingInput [(ngModel)]="addingTodo.task" (keyup.enter)="onAddingDone()">
-        </td>
-      </tr>
-    </ng-template>
-    <!-- end of conditional render -->
-  </table>
-</main>
+          <td>
+            <input matInput #addingInput [(ngModel)]="addingTodo.task" [placeholder]="addingTodo.task === '' ? 'Enter a new task' : ''" (keyup.enter)="onAddingDone()">
+          </td>
+        </tr>
+      </ng-template>
+      <!-- end of conditional render -->
+    </table>
+  </main>
 
-<footer>
-  <ng-container *ngIf="!adding; else nothing">
-    <button mat-icon-button color="primary" aria-label="Icon button with add-circle icon" (click)="startAdding()">
-      <mat-icon class="material-symbols-outlined">add_circle</mat-icon>
-      <!--<mat-icon class="material-symbols-outlined">add</mat-icon>-->
-    </button>
-  </ng-container>
-  <ng-template #nothing></ng-template>
-</footer>
+  <footer>
+    <ng-container *ngIf="!adding; else nothing">
+      <button mat-icon-button color="primary" aria-label="Icon button with add-circle icon" (click)="startAdding()">
+        <mat-icon class="material-symbols-outlined">add_circle</mat-icon>
+        <!--<mat-icon class="material-symbols-outlined">add</mat-icon>-->
+      </button>
+    </ng-container>
+    <ng-template #nothing></ng-template>
+  </footer>
 
 
 

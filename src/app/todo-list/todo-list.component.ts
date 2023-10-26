@@ -96,27 +96,20 @@ export class TodoListComponent implements OnInit {
   }
 
   onAddingDone() {
-    this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
-    this.adding = false;
+    if (this.addingTodo.task !== "") {
+      this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
+      this.adding = false;
+    }
   };
 
   startDeleting() {
     this.filteredTodos$.pipe(first()).subscribe(todos => {
       if (todos.length === 0) {
-        console.log("Delete button is disabled because there are 0 completed items.");
-        // Optionally, you can display a message to the user
-        // this.snackbar.open('Cannot delete. There are no completed items.', 'OK');
       } else {
         this.deleting = true;
-        // Your deletion logic here
       }
     });
   }
-
-  // startDeleting() {
-  //   this.deleting = true;
-  // };
-
 
   delete(id: number): void {
     this.store.dispatch(requestDeleteAction({ id: id }));
