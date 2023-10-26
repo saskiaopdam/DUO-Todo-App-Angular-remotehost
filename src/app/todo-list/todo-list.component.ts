@@ -96,7 +96,10 @@ export class TodoListComponent implements OnInit {
   }
 
   onAddingDone() {
-    if (this.addingTodo.task !== "") {
+    this.deleting = false;
+    if (this.addingTodo.task === "") {
+      this.adding = false;
+    } else {
       this.store.dispatch(requestAddAction({ todo: this.addingTodo }));
       this.adding = false;
     }

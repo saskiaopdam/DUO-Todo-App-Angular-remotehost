@@ -7,7 +7,8 @@
       <ng-container *ngIf="!adding && !editing && !deleting; else doneButton">
       </ng-container>
       <ng-template #doneButton>
-        <button mat-button (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()" [ngClass]="{ 'disabled': (addingTodo.task) === '' }" [disabled]="(addingTodo.task) === ''">Done</button>
+        <button mat-button (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()" >Done</button>
+<!--        <button mat-button (click)="adding? onAddingDone(): editing? onEditDone(): onDeleteDone()" [ngClass]="{ 'disabled': (addingTodo.task) === '' }" [disabled]="(addingTodo.task) === ''">Done</button>-->
       </ng-template>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -29,7 +30,8 @@
         </ng-template>
       </td>
       <!-- conditional render of DELETE button -->
-      <ng-container *ngIf="!deleting; else deleteButton"></ng-container>
+      <ng-container *ngIf="!deleting || adding; else deleteButton"></ng-container>
+
       <ng-template #deleteButton>
         <td>
           <button mat-icon-button color="primary" aria-label="Icon button with delete icon" *ngIf="todo.checked" (click)="delete(todo.id)">
@@ -46,7 +48,7 @@
       <tr>
         <td><mat-checkbox></mat-checkbox></td>
           <td>
-            <input matInput #addingInput [(ngModel)]="addingTodo.task" [placeholder]="addingTodo.task === '' ? 'Enter a new task' : ''" (keyup.enter)="onAddingDone()">
+            <input matInput #addingInput [(ngModel)]="addingTodo.task" [placeholder]="addingTodo.task === '' ? 'Enter a new task' : ''" (keyup.enter)="onAddingDone()" (blur)="onAddingDone()">
           </td>
         </tr>
       </ng-template>
