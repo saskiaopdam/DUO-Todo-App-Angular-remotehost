@@ -2,7 +2,7 @@
 
 DUO Java Masterclass project
 
-- Link naar [deploy]().
+- [Todo Demo Video](https://youtu.be/kooHEsm1vi0)
 
 ## Inspiration
 
