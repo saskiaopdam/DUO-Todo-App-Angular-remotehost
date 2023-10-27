@@ -30,7 +30,8 @@ DUO Java Masterclass project
 
 - Ngrx (Observable <=> initialState = {})
 - TypeErrors / filter not a function
-- Resolved, but todos not visible
+- Resolved in trial, but todos not visible
+- So current version omits {} in state
 
 ## Features
 
