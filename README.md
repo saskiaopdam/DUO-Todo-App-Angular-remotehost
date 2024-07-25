@@ -2,6 +2,10 @@
 
 DUO Java Masterclass project
 
+## Deploy
+
+Deployed on localhost.
+
 - [Todo Demo Video](https://youtu.be/kooHEsm1vi0)
 
 ## Inspiration
