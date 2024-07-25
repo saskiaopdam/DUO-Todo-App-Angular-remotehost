@@ -1,10 +1,10 @@
-# Todo App
+# Todo App Angular
 
 DUO Java Masterclass project (september-oktober 2023)
 
 ## Deploy
 
-Deployed on localhost.
+Deployed op localhost. Opties voor remote - Heroku?
 
 - [Todo Demo Video](https://youtu.be/kooHEsm1vi0)
 
