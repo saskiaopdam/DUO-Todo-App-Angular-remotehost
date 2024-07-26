@@ -4,15 +4,13 @@ DUO Java Masterclass project (September-October 2023)
 
 ## Deploy
 
-Deployed on localhost. Remote options - Heroku?
+Currently on Heroku:
+- [Guide to Angular-Heroku-Deploy](https://medium.com/geekculture/how-to-easily-deploy-your-first-angular-app-on-heroku-65dd546c8181#:~:text=How%20to%20Easily%20Deploy%20Your%20First%20Angular%20App,and%20angular%20compiler%20dev-dependencies%20in%20your%20project.%20)
+- App accessible, but needs backend
 
-Heroku:
-
-1. Followed this guide: [How to Easily Deploy Your First Angular App On Heroku](https://medium.com/geekculture/how-to-easily-deploy-your-first-angular-app-on-heroku-65dd546c8181#:~:text=How%20to%20Easily%20Deploy%20Your%20First%20Angular%20App,and%20angular%20compiler%20dev-dependencies%20in%20your%20project.%20)
-2. This worked: app is visible on Heroku, but needs backend.
-
-Localhost:
-- [Todo Demo Video](https://youtu.be/kooHEsm1vi0)
+Originally on localhost:
+- [Local Host Code](https://github.com/saskiaopdam/DUO-Todo-App-Angular-localhost)
+- [Local Host Video](https://youtu.be/kooHEsm1vi0)
 
 ## Inspiration
 
