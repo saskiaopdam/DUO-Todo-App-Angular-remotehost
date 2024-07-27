@@ -18,7 +18,6 @@ export class TodoService {
   constructor(public http: HttpClient) { }
 
   add(todo: Todo): Observable<Todo> {
-    // return this.http.post<Todo>('http://localhost:8080/todo', todo);
     return this.http.post<Todo>(this.apiUrl, todo);
   }
 
