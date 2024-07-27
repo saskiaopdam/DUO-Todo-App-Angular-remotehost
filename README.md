@@ -9,7 +9,7 @@ Currently on Heroku (paid):
 - [Guide to Angular-Heroku-Deploy](https://medium.com/geekculture/how-to-easily-deploy-your-first-angular-app-on-heroku-65dd546c8181#:~:text=How%20to%20Easily%20Deploy%20Your%20First%20Angular%20App,and%20angular%20compiler%20dev-dependencies%20in%20your%20project.%20)
 
 Visit the backend:
-- [Backend Live on Heroku](https://duo-todo-app-java-5b713e6535ff.herokuapp.com/)
+- [Backend Live on Heroku](https://duo-todo-app-java-5b713e6535ff.herokuapp.com/todo)
 
 Originally on localhost:
 - [Local Host Code](https://github.com/saskiaopdam/DUO-Todo-App-Angular-localhost)
