@@ -13,28 +13,30 @@ export class TodoService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  private apiUrl = 'https://duo-todo-app-java-5b713e6535ff.herokuapp.com/todo/';  // Update with your Heroku app URL
+  
   constructor(public http: HttpClient) { }
 
   add(todo: Todo): Observable<Todo> {
     // return this.http.post<Todo>('http://localhost:8080/todo', todo);
-    return this.http.post<Todo>('http://m1y7g7.stackhero-network.com:4656/todo', todo);
+    return this.http.post<Todo>(this.apiUrl, todo);
   }
 
   update(todo: Todo): Observable<Todo> {
-    return this.http.put<Todo>('http://m1y7g7.stackhero-network.com:4656/todo/' + todo.id, todo
+    return this.http.put<Todo>(this.apiUrl + todo.id, todo
     );
   }
 
   delete(id: number) {
-    return this.http.delete('http://m1y7g7.stackhero-network.com:4656/todo/' + id)
+    return this.http.delete(this.apiUrl + id)
   }
 
   load(): Observable<Todo[]> {
-    return this.http.get<Todo[]>('http://m1y7g7.stackhero-network.com:4656/todo')
+    return this.http.get<Todo[]>(this.apiUrl)
   }
 
   toggle(todo: Todo): Observable<Todo> {
-    return this.http.put<Todo>('http://m1y7g7.stackhero-network.com:4656/todo/' + todo.id, todo
+    return this.http.put<Todo>(this.apiUrl + todo.id, todo
     );
   }
 
