@@ -28,7 +28,7 @@ export class TodoService {
   }
 
   delete(id: number) {
-    return this.http.delete(this.apiUrl + + "/" + id)
+    return this.http.delete(this.apiUrl + "/" + id)
   }
 
   load(): Observable<Todo[]> {
@@ -36,7 +36,7 @@ export class TodoService {
   }
 
   toggle(todo: Todo): Observable<Todo> {
-    return this.http.put<Todo>(this.apiUrl + + "/" + todo.id, todo
+    return this.http.put<Todo>(this.apiUrl + "/" + todo.id, todo
     );
   }
 
